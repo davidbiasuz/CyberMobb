@@ -5,17 +5,15 @@ function adicionar(value) {
   display.value += value;
 }
 
+function isCalculadoraVisivel() {
+  return window.getComputedStyle(calculadora).display !== "none";
+}
+
 function alterarVisibilidade() {
-  console.log("Mudando visualização")
-  console.log('Display: ', calculadora.checkVisibility())
-  if (calculadora.checkVisibility()) {
-    // A calculadora estava exibindo, temos que esconde-la
-    console.log("Ta mostrando")
-    calculadora.style.display = "none"
+  if (isCalculadoraVisivel()) {
+    calculadora.style.display = "none";
   } else {
-    calculadora.style.display = "block"
-    // A calculadora estava escondida, temos que mostra-la
-    console.log("Ta escondido")
+    calculadora.style.display = "block";
   }
 }
 
@@ -25,8 +23,16 @@ function limparDisplay() {
 
 function calcular() {
   try {
-    display.value = eval(display.value);
+    // Validação: apenas números e operadores permitidos
+    if (/^[\d+\-*/().\s]+$/.test(display.value)) {
+      display.value = Function('"use strict";return (' + display.value + ")")();
+    } else {
+      throw new Error("Expressão inválida");
+    }
   } catch {
     display.value = "ERRO";
+    setTimeout(() => {
+      display.value = "";
+    }, 1500);
   }
 }

@@ -174,7 +174,7 @@ body {
 }
 
 body.entrada {
-  background: rgb(0, 0, 0);
+  background: radial-gradient(circle at top, #270000, #000);
   color: #ff0000;
   height: 100vh;
   display: flex;
@@ -184,65 +184,79 @@ body.entrada {
 
 .container {
   text-align: center;
+  max-width: 500px;
+  padding: 40px;
+}
+
+.sub {
+  font-size: 14px;
+  letter-spacing: 3px;
+  opacity: 0.7;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+/* BARRA DE LOADING */
+.loading-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 0, 0, 0.2);
+  border-radius: 10px;
+  margin: 30px 0;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.loading-progress {
+  height: 100%;
+  width: 70%;
+  background: linear-gradient(90deg, #ff0000, #ff6666, #ff0000);
+  background-size: 200% 100%;
+  animation: loading 2s ease-in-out infinite;
+  box-shadow: 0 0 15px #ff0000;
+}
+
+@keyframes loading {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 button {
   margin-top: 30px;
   padding: 15px 40px;
-  font-size: 18px;
+  font-size: 16px;
   background: transparent;
   color: #ff0000;
   border: 2px solid #ff0000;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s;
+  letter-spacing: 2px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
 }
 
 button:hover {
   background: #ff0000;
-  color: rgb(78, 0, 0);
-  box-shadow: 0 0 20px #ff0000;
+  color: #000;
+  box-shadow: 0 0 30px #ff0000, 0 0 60px rgba(255, 0, 0, 0.3);
+  transform: translateY(-3px);
 }
 
-/* GLITCH SIMPLES */
-.glitch {
-  position: relative;
-  font-size: 60px;
-}
-
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-}
-
-.glitch::before {
-  color: rgb(172, 14, 14);
-  animation: glitch 1s infinite;
-}
-
-.glitch::after {
-  color: rgb(134, 0, 0);
-  animation: glitch 1.5s infinite;
-}
-
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(2px, -2px); }
-  60% { transform: translate(-1px, 1px); }
-  80% { transform: translate(1px, -1px); }
-  100% { transform: translate(0); }
+button:active {
+  transform: translateY(-1px);
 }
 
 body.sistema {
   background: radial-gradient(circle at top, #270000, #000);
   color: #ff0000;
   min-height: 100vh;
-  padding: 40px;
-
-  max-width: 900px;
-  margin: 0 auto;
+  padding: 40px 20px;
 }
 
 .topo {
@@ -250,47 +264,282 @@ body.sistema {
   margin-bottom: 50px;
 }
 
-.menu {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 40px;
-}
-
-#calculadora{
-  display: none;
-}
-
-.card-util {
-  border: 2px solid #ff0000;
-  padding: 30px;
-  text-align: center;
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.7);
-  box-shadow: 0 0 15px #ff0000;
-  transition: 0.3s;
-  font-size: 18px;
-}
-
-.card-util:hover {
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 0 30px #ff0000;
-}
-
 .painel {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 60px;
   align-items: start;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .lado-esquerdo {
-  border-left: 3px solid #ff0000;
-  padding-left: 25px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #ff0000;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  position: sticky;
+  top: 20px;
 }
 
-.lado-esquerdo p {
+.lado-esquerdo .glitch {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.welcome-text {
   margin-top: 15px;
+  opacity: 0.8;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.system-info {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.info-line {
+  font-size: 13px;
   opacity: 0.7;
+  margin: 8px 0;
+  letter-spacing: 1px;
+}
+
+.status-online {
+  color: #00ff00;
+  text-shadow: 0 0 8px #00ff00;
+  font-weight: bold;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+#calculadora {
+  display: none;
+}
+
+.card-util {
+  border: 2px solid #ff0000;
+  padding: 30px 20px;
+  text-align: center;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+  transition: all 0.3s;
+  font-size: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-height: 140px;
+  justify-content: center;
+}
+
+.card-util .icon {
+  font-size: 36px;
+  display: block;
+  filter: drop-shadow(0 0 8px #ff0000);
+}
+
+.card-util .card-title {
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.card-util:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 0 30px #ff0000, 0 0 60px rgba(255, 0, 0, 0.3);
+  background: rgba(20, 0, 0, 0.9);
+}
+
+/* CALCULADORA CYBERPUNK */
+.calculadora-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #ff0000;
+  border-radius: 16px;
+  box-shadow: 0 0 40px #ff0000, 0 0 80px rgba(0, 0, 0, 0.8);
+  padding: 25px;
+  width: 320px;
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.calc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calc-title {
+  color: #ff0000;
+  text-shadow: 0 0 10px #ff0000;
+  font-size: 20px;
+  letter-spacing: 3px;
+}
+
+.btn-fechar {
+  background: transparent;
+  border: 2px solid #ff0000;
+  color: #ff0000;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.btn-fechar:hover {
+  background: #ff0000;
+  color: #000;
+  transform: rotate(90deg);
+  box-shadow: 0 0 20px #ff0000;
+}
+
+.calc-display {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #ff0000;
+  border-radius: 8px;
+  padding: 20px 15px;
+  color: #ff0000;
+  font-size: 24px;
+  text-align: right;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 20px;
+  box-shadow: inset 0 0 15px rgba(255, 0, 0, 0.2);
+  letter-spacing: 2px;
+}
+
+.calc-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.calc-btn {
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #ff0000;
+  color: #ff0000;
+  padding: 18px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+}
+
+.calc-btn:hover {
+  background: rgba(255, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.calc-btn:active {
+  transform: translateY(0);
+}
+
+.calc-btn.operator {
+  background: rgba(255, 0, 0, 0.1);
+  font-size: 22px;
+}
+
+.calc-btn.clear {
+  background: rgba(255, 100, 0, 0.2);
+  border-color: #ff6600;
+  color: #ff6600;
+}
+
+.calc-btn.clear:hover {
+  background: rgba(255, 100, 0, 0.3);
+  box-shadow: 0 0 20px #ff6600;
+}
+
+.calc-btn.equals {
+  grid-column: span 4;
+  background: rgba(255, 0, 0, 0.2);
+  font-size: 24px;
+}
+
+.calc-btn.equals:hover {
+  background: #ff0000;
+  color: #000;
+  box-shadow: 0 0 30px #ff0000;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 900px) {
+  .painel {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .lado-esquerdo {
+    position: relative;
+    top: 0;
+  }
+
+  .menu {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .calculadora-container {
+    width: 90%;
+    max-width: 320px;
+  }
+
+  .calc-btn {
+    padding: 15px;
+    font-size: 16px;
+  }
+
+  .estudos-container {
+    width: 95%;
+    min-width: auto;
+    padding: 25px 20px;
+  }
+
+  .filtros-botoes {
+    flex-direction: column;
+  }
+
+  .btn-filtro {
+    width: 100%;
+  }
 }
 
 /* ESTILO DO FORMULÁRIO DE TAREFAS */
@@ -360,6 +609,28 @@ body.sistema {
   resize: vertical;
 }
 
+/* ESTILO PARA INPUT DATE */
+.tarefa-form input[type="date"] {
+  cursor: pointer;
+  position: relative;
+}
+
+.tarefa-form input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.tarefa-form input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+.tarefa-form input[type="date"]:invalid {
+  border-color: #ff6600;
+  box-shadow: 0 0 15px rgba(255, 100, 0, 0.5);
+}
+
 .tarefa-form select {
   cursor: pointer;
 }
@@ -368,6 +639,42 @@ body.sistema {
   background: #000;
   color: #ff0000;
   padding: 10px;
+}
+
+.form-label {
+  display: block;
+  color: #ff0000;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  margin-top: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.form-label:first-of-type {
+  margin-top: 0;
+}
+
+.form-hint {
+  display: block;
+  color: rgba(255, 0, 0, 0.6);
+  font-size: 11px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.form-buttons .btn-cyber {
+  flex: 1;
 }
 
 .tarefa-form button {
@@ -382,9 +689,89 @@ body.sistema {
   border-radius: 18px;
   box-shadow: 0 0 30px #ff0000, 0 0 60px #000;
   padding: 40px 30px;
-  max-width: 700px;
+  width: 90%;
+  max-width: 900px;
+  min-width: 600px;
   margin: 40px auto;
   min-height: 100vh;
+}
+
+/* FILTROS DE PRIORIDADE */
+.filtros-container {
+  margin-top: 25px;
+  padding: 20px;
+  background: rgba(255, 0, 0, 0.05);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  border-radius: 12px;
+}
+
+.filtros-titulo {
+  color: #ff0000;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.filtros-botoes {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-filtro {
+  background: rgba(0, 0, 0, 0.7);
+  color: #ff0000;
+  border: 2px solid rgba(255, 0, 0, 0.3);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 1.5px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+}
+
+.btn-filtro:hover {
+  border-color: #ff0000;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-filtro.active {
+  background: #ff0000;
+  color: #000;
+  border-color: #ff0000;
+  box-shadow: 0 0 20px #ff0000;
+}
+
+.btn-filtro.filtro-alta:hover,
+.btn-filtro.filtro-alta.active {
+  border-color: #ff0000;
+  box-shadow: 0 0 20px #ff0000;
+}
+
+.btn-filtro.filtro-media:hover,
+.btn-filtro.filtro-media.active {
+  border-color: #ff6600;
+  box-shadow: 0 0 20px #ff6600;
+}
+
+.btn-filtro.filtro-baixa:hover,
+.btn-filtro.filtro-baixa.active {
+  border-color: #00ff00;
+  box-shadow: 0 0 20px #00ff00;
+}
+
+.contador-tarefas {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 12px;
+  color: rgba(255, 0, 0, 0.7);
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 /* LISTA DE TAREFAS */
@@ -405,6 +792,18 @@ body.sistema {
   color: #ff0000;
   position: relative;
   transition: transform 0.3s, box-shadow 0.3s;
+  animation: fadeInCard 0.4s ease-out;
+}
+
+@keyframes fadeInCard {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .tarefa-card:hover {
@@ -493,6 +892,50 @@ body.sistema {
   color: #ffcc00;
   text-shadow: 0 0 8px #ffcc00;
   font-weight: bold;
+}
+
+/* CARD DE TAREFA CONCLUÍDA - TODO O CARD VERDE */
+.tarefa-card.status-concluída {
+  background: rgba(0, 40, 0, 0.85);
+  border-color: #00ff00;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+.tarefa-card.status-concluída:hover {
+  box-shadow: 0 0 30px #00ff00, 0 0 60px rgba(0, 255, 0, 0.3);
+}
+
+.tarefa-card.status-concluída h2 {
+  color: #00ff00;
+  text-shadow: 0 0 10px #00ff00;
+  text-decoration: line-through;
+  opacity: 0.8;
+}
+
+.tarefa-card.status-concluída p,
+.tarefa-card.status-concluída .tarefa-info {
+  color: #00ff00;
+  opacity: 0.7;
+}
+
+.tarefa-card.status-concluída .categoria,
+.tarefa-card.status-concluída .prioridade {
+  color: #00ff00;
+  border-color: #00ff00;
+  text-shadow: 0 0 6px #00ff00;
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+}
+
+.tarefa-card.status-concluída .btn-cyber {
+  color: #00ff00;
+  border-color: #00ff00;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.tarefa-card.status-concluída .btn-cyber:hover {
+  background: #00ff00;
+  color: #000;
+  box-shadow: 0 0 20px #00ff00, 0 0 40px rgba(0, 255, 0, 0.3);
 }
 
 /* AÇÕES DA TAREFA */

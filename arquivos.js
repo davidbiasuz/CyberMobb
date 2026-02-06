@@ -16,7 +16,8 @@ function entrar() {
     document.getElementById("app").classList.remove("hidden");
     renderizarLista();
   } else {
-    alert("Senha incorreta");
+    alert("❌ ACESSO NEGADO: Senha incorreta");
+    document.getElementById("senha").value = "";
   }
 }
 
@@ -25,7 +26,7 @@ function salvar() {
   const texto = document.getElementById("texto").value;
 
   if (!titulo || !texto) {
-    alert("Preenche tudo");
+    alert("⚠️ ERRO: Preencha todos os campos");
     return;
   }
 
@@ -39,6 +40,7 @@ function salvar() {
   salvarLocal();
   limparCampos();
   renderizarLista();
+  alert("✅ Arquivo salvo com sucesso!");
 }
 
 function abrirArquivo(id) {
@@ -52,22 +54,37 @@ function abrirArquivo(id) {
 
 function editar() {
   if (!arquivoAtualId) {
-    alert("Nenhum arquivo selecionado");
+    alert("⚠️ ERRO: Nenhum arquivo selecionado");
+    return;
+  }
+
+  const titulo = document.getElementById("titulo").value;
+  const texto = document.getElementById("texto").value;
+
+  if (!titulo || !texto) {
+    alert("⚠️ ERRO: Preencha todos os campos");
     return;
   }
 
   const arquivo = arquivos.find(a => a.id === arquivoAtualId);
-  arquivo.titulo = document.getElementById("titulo").value;
-  arquivo.texto = document.getElementById("texto").value;
+  arquivo.titulo = titulo;
+  arquivo.texto = texto;
+  arquivo.data = new Date().toLocaleString();
 
   salvarLocal();
   renderizarLista();
-  alert("Arquivo editado ✏️");
+  alert("✅ Arquivo editado com sucesso!");
+  limparCampos();
+  arquivoAtualId = null;
 }
 
 function excluir() {
   if (!arquivoAtualId) {
-    alert("Nenhum arquivo selecionado");
+    alert("⚠️ ERRO: Nenhum arquivo selecionado");
+    return;
+  }
+
+  if (!confirm("🗑️ Tem certeza que deseja excluir este arquivo?")) {
     return;
   }
 
@@ -77,6 +94,7 @@ function excluir() {
   salvarLocal();
   limparCampos();
   renderizarLista();
+  alert("✅ Arquivo excluído com sucesso!");
 }
 
 function sair() {
@@ -90,10 +108,18 @@ function renderizarLista() {
   const lista = document.getElementById("lista");
   lista.innerHTML = "";
 
+  if (arquivos.length === 0) {
+    lista.innerHTML = '<p style="text-align: center; opacity: 0.5; margin-top: 20px;">Nenhum arquivo salvo</p>';
+    return;
+  }
+
   arquivos.forEach(arquivo => {
     const item = document.createElement("div");
     item.className = "arquivo";
-    item.innerText = `꛴ ${arquivo.titulo}`;
+    item.innerHTML = `
+      <span style="font-weight: bold;">📄 ${arquivo.titulo}</span>
+      <span style="font-size: 11px; opacity: 0.6; margin-left: 10px;">${arquivo.data}</span>
+    `;
     item.onclick = () => abrirArquivo(arquivo.id);
     lista.appendChild(item);
   });

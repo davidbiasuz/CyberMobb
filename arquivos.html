@@ -2,30 +2,45 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cyber Mobb • Arquivos</title>
   <link rel="stylesheet" href="arquivos.css">
 </head>
 <body>
 
-<div id="login" class="box">
-    <h1> Arquivos</h1>
-    <input type="password" id="senha" placeholder="Digite a senha">
-    <button onclick="entrar()">Acessar</button>
+  <!-- Tela de Login -->
+  <div id="login" class="arquivos-container">
+    <h1 class="glitch" data-text="ARQUIVOS">ARQUIVOS</h1>
+    <p class="sub-text">Sistema de arquivos protegido</p>
+    <div class="login-form">
+      <input type="password" id="senha" placeholder="Digite a senha" class="cyber-input">
+      <button onclick="entrar()" class="btn-cyber">ACESSAR SISTEMA</button>
+    </div>
   </div>
 
-  <div id="app" class="box hidden">
-  <h1> Arquivos</h1>
+  <!-- Tela Principal de Arquivos -->
+  <div id="app" class="arquivos-container hidden">
+    <div class="header-arquivos">
+      <h1 class="glitch" data-text="ARQUIVOS">ARQUIVOS</h1>
+      <button onclick="sair()" class="btn-cyber btn-sair">SAIR</button>
+    </div>
 
-  <input id="titulo" placeholder="Nome do arquivo">
-  <textarea id="texto" placeholder="Escreve aqui..."></textarea>
+    <div class="editor-container">
+      <input id="titulo" placeholder="Nome do arquivo" class="cyber-input">
+      <textarea id="texto" placeholder="Escreva aqui..." class="cyber-textarea"></textarea>
 
-  <button onclick="salvar()"> Salvar</button>
-  <button onclick="editar()"> Editar</button>
-  <button onclick="excluir()"> Excluir</button>
-  <button onclick="sair()"> Sair</button>
+      <div class="acoes-container">
+        <button onclick="salvar()" class="btn-cyber">💾 Salvar</button>
+        <button onclick="editar()" class="btn-cyber">✏️ Editar</button>
+        <button onclick="excluir()" class="btn-cyber btn-excluir">🗑️ Excluir</button>
+      </div>
+    </div>
 
-  <div id="lista"></div>
-</div>
+    <div class="lista-container">
+      <h2 class="lista-titulo">Meus Arquivos</h2>
+      <div id="lista"></div>
+    </div>
+  </div>
 
   <script src="arquivos.js"></script>
 </body>

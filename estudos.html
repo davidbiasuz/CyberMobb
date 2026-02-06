@@ -10,28 +10,55 @@
   <div class="estudos-container">
     <h1 class="glitch" data-text="Estudos">Estudos</h1>
     <button class="btn-cyber" onclick="abrirFormularioTarefa()">+ Nova Tarefa</button>
+    
+    <!-- Filtros de Prioridade -->
+    <div class="filtros-container">
+      <h3 class="filtros-titulo">Filtrar por Prioridade:</h3>
+      <div class="filtros-botoes">
+        <button class="btn-filtro active" onclick="filtrarPorPrioridade('todas')">Todas</button>
+        <button class="btn-filtro filtro-alta" onclick="filtrarPorPrioridade('alta')">🔴 Alta</button>
+        <button class="btn-filtro filtro-media" onclick="filtrarPorPrioridade('média')">🟡 Média</button>
+        <button class="btn-filtro filtro-baixa" onclick="filtrarPorPrioridade('baixa')">🟢 Baixa</button>
+      </div>
+      <p class="contador-tarefas" id="contadorTarefas">0 tarefas</p>
+    </div>
+    
     <div class="tarefas-lista" id="tarefasLista">
       <!-- Cards de tarefas serão renderizados aqui -->
     </div>
     <!-- Formulário de nova tarefa -->
     <div id="formTarefa" style="display:none;" class="tarefa-form">
       <h2>Criar Nova Tarefa</h2>
-      <input type="text" id="tituloTarefa" placeholder="Título" required>
-      <textarea id="descricaoTarefa" placeholder="Descrição"></textarea>
+      
+      <label for="tituloTarefa" class="form-label">Título *</label>
+      <input type="text" id="tituloTarefa" placeholder="Digite o título da tarefa" required>
+      
+      <label for="descricaoTarefa" class="form-label">Descrição</label>
+      <textarea id="descricaoTarefa" placeholder="Descreva a tarefa..."></textarea>
+      
+      <label for="prazoTarefa" class="form-label">Prazo</label>
       <input type="date" id="prazoTarefa">
+      <small class="form-hint">📅 Selecione uma data futura ou deixe em branco</small>
+      
+      <label for="categoriaTarefa" class="form-label">Categoria</label>
       <select id="categoriaTarefa">
         <option value="Estudo">Estudo</option>
         <option value="Trabalho">Trabalho</option>
         <option value="Código">Código</option>
         <option value="Pessoal">Pessoal</option>
       </select>
+      
+      <label for="prioridadeTarefa" class="form-label">Prioridade</label>
       <select id="prioridadeTarefa">
         <option value="alta">Alta</option>
         <option value="média">Média</option>
         <option value="baixa">Baixa</option>
       </select>
-      <button class="btn-cyber" onclick="salvarTarefa()">Salvar</button>
-      <button class="btn-cyber" onclick="fecharFormularioTarefa()">Cancelar</button>
+      
+      <div class="form-buttons">
+        <button class="btn-cyber" onclick="salvarTarefa()">Salvar</button>
+        <button class="btn-cyber" onclick="fecharFormularioTarefa()">Cancelar</button>
+      </div>
     </div>
   </div>
   <script src="tasks.js"></script>

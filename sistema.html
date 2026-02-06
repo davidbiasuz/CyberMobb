@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SISTEMA | CYBER MOBB</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -12,49 +13,76 @@
 
     <aside class="lado-esquerdo">
       <h1 class="glitch" data-text="CYBER MOBB SYSTEM">CYBER MOBB SYSTEM</h1>
-      <p>Bem-vindo, MOB.</p>
+      <p class="welcome-text">Bem-vindo, MOB.</p>
+      <div class="system-info">
+        <p class="info-line">▸ Status: <span class="status-online">ONLINE</span></p>
+        <p class="info-line">▸ Módulos: 6</p>
+        <p class="info-line">▸ Versão: 2.0</p>
+      </div>
     </aside>
 
     <main class="menu">
-      <div id="botaoCalculadora" onclick="alterarVisibilidade()" class="card-util"> Calculadora</div>
-      <div class="card-util"> Estudos</div> 
-      <div class="card-util" onclick="window.location.href='arquivos.html'">Arquivos</div>
-      <div class="card-util"> Assistente IA</div>
-      <div class="card-util" onclick="window.location.href='estudos.html'">Tarefas</div>
-      <div class="card-util"> Configurações</div>
+      <div id="botaoCalculadora" onclick="alterarVisibilidade()" class="card-util">
+        <span class="icon">🔢</span>
+        <span class="card-title">Calculadora</span>
+      </div>
+      <div class="card-util">
+        <span class="icon">📚</span>
+        <span class="card-title">Estudos</span>
+      </div> 
+      <div class="card-util" onclick="window.location.href='arquivos.html'">
+        <span class="icon">📁</span>
+        <span class="card-title">Arquivos</span>
+      </div>
+      <div class="card-util">
+        <span class="icon">🤖</span>
+        <span class="card-title">Assistente IA</span>
+      </div>
+      <div class="card-util" onclick="window.location.href='estudos.html'">
+        <span class="icon">✓</span>
+        <span class="card-title">Tarefas</span>
+      </div>
+      <div class="card-util">
+        <span class="icon">⚙️</span>
+        <span class="card-title">Configurações</span>
+      </div>
     </main>
 
   </div>
 
-  <div id="calculadora" class="card calc-card">
-  <h2>CALCULADORA</h2>
+  <!-- Calculadora Cyberpunk -->
+  <div id="calculadora" class="calculadora-container">
+    <div class="calc-header">
+      <h2 class="calc-title">CALCULADORA</h2>
+      <button onclick="alterarVisibilidade()" class="btn-fechar">✕</button>
+    </div>
+    <input type="text" id="calcDisplay" class="calc-display" readonly>
+    <div class="calc-buttons">
+      <button onclick="adicionar('7')" class="calc-btn">7</button>
+      <button onclick="adicionar('8')" class="calc-btn">8</button>
+      <button onclick="adicionar('9')" class="calc-btn">9</button>
+      <button onclick="adicionar('/')" class="calc-btn operator">÷</button>
 
-  <input type="text" id="calcDisplay">
+      <button onclick="adicionar('4')" class="calc-btn">4</button>
+      <button onclick="adicionar('5')" class="calc-btn">5</button>
+      <button onclick="adicionar('6')" class="calc-btn">6</button>
+      <button onclick="adicionar('*')" class="calc-btn operator">×</button>
 
-  <div class="calc-buttons">
-    <button onclick="adicionar('1')">1</button>
-    <button onclick="adicionar('2')">2</button>
-    <button onclick="adicionar('3')">3</button>
-    <button onclick="adicionar('4')">4</button>
+      <button onclick="adicionar('1')" class="calc-btn">1</button>
+      <button onclick="adicionar('2')" class="calc-btn">2</button>
+      <button onclick="adicionar('3')" class="calc-btn">3</button>
+      <button onclick="adicionar('-')" class="calc-btn operator">-</button>
 
-    <button onclick="adicionar('5')">5</button>
-    <button onclick="adicionar('6')">6</button>
-    <button onclick="adicionar('7')">7</button>
-    <button onclick="adicionar('8')">8</button>
+      <button onclick="adicionar('0')" class="calc-btn">0</button>
+      <button onclick="adicionar('.')" class="calc-btn">.</button>
+      <button onclick="limparDisplay()" class="calc-btn clear">C</button>
+      <button onclick="adicionar('+')" class="calc-btn operator">+</button>
 
-    <button onclick="adicionar('9')">9</button>
-    <button onclick="adicionar('0')">0</button>
-    <button onclick="adicionar('/')">÷</button>
-    <button onclick="adicionar('x')">x</button>
-
-   <button onclick="adicionar('+')">+</button>
-    <button onclick="adicionar('-')">-</button>
-     <button onclick="limparDisplay()">C</button>
-    <button onclick="calcular()">=</button>
+      <button onclick="calcular()" class="calc-btn equals">=</button>
+    </div>
   </div>
-</div>
 
-<script src="calculator.js"></script>
+  <script src="calculator.js"></script>
 
 </body>
 
