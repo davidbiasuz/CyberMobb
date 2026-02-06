@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cyber Mobb • Arquivos</title>
+  <link rel="stylesheet" href="arquivos.css">
+</head>
+<body>
+
+<div id="login" class="box">
+    <h1> Arquivos</h1>
+    <input type="password" id="senha" placeholder="Digite a senha">
+    <button onclick="entrar()">Acessar</button>
+  </div>
+
+  <div id="app" class="box hidden">
+  <h1> Arquivos</h1>
+
+  <input id="titulo" placeholder="Nome do arquivo">
+  <textarea id="texto" placeholder="Escreve aqui..."></textarea>
+
+  <button onclick="salvar()"> Salvar</button>
+  <button onclick="editar()"> Editar</button>
+  <button onclick="excluir()"> Excluir</button>
+  <button onclick="sair()"> Sair</button>
+
+  <div id="lista"></div>
+</div>
+
+  <script src="arquivos.js"></script>
+</body>
+</html>

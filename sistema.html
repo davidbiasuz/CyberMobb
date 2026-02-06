@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>SISTEMA | CYBER MOBB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="sistema">
+
+  <div class="painel">
+
+    <aside class="lado-esquerdo">
+      <h1 class="glitch" data-text="CYBER MOBB SYSTEM">CYBER MOBB SYSTEM</h1>
+      <p>Bem-vindo, MOB.</p>
+    </aside>
+
+    <main class="menu">
+      <div id="botaoCalculadora" onclick="alterarVisibilidade()" class="card-util"> Calculadora</div>
+      <div class="card-util"> Estudos</div> 
+      <div class="card-util" onclick="window.location.href='arquivos.html'">Arquivos</div>
+      <div class="card-util"> Assistente IA</div>
+      <div class="card-util" onclick="window.location.href='estudos.html'">Tarefas</div>
+      <div class="card-util"> Configurações</div>
+    </main>
+
+  </div>
+
+  <div id="calculadora" class="card calc-card">
+  <h2>CALCULADORA</h2>
+
+  <input type="text" id="calcDisplay">
+
+  <div class="calc-buttons">
+    <button onclick="adicionar('1')">1</button>
+    <button onclick="adicionar('2')">2</button>
+    <button onclick="adicionar('3')">3</button>
+    <button onclick="adicionar('4')">4</button>
+
+    <button onclick="adicionar('5')">5</button>
+    <button onclick="adicionar('6')">6</button>
+    <button onclick="adicionar('7')">7</button>
+    <button onclick="adicionar('8')">8</button>
+
+    <button onclick="adicionar('9')">9</button>
+    <button onclick="adicionar('0')">0</button>
+    <button onclick="adicionar('/')">÷</button>
+    <button onclick="adicionar('x')">x</button>
+
+   <button onclick="adicionar('+')">+</button>
+    <button onclick="adicionar('-')">-</button>
+     <button onclick="limparDisplay()">C</button>
+    <button onclick="calcular()">=</button>
+  </div>
+</div>
+
+<script src="calculator.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,527 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* FUNDO GERAL */
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #4b0000, #000000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+  color: #ff0606;
+}
+
+/* CARD CYBERPUNK */
+.card {
+  background: rgba(0, 0, 0, 0.9);
+  width: 320px;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+
+  border: 1px solid #ff0000;
+  box-shadow:
+    0 0 15px #ff0000,
+    0 0 30px rgba(0, 0, 0, 0.342);
+
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* HOVER DO CARD */
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 0 25px #ff0000,
+    0 0 50px rgba(0, 0, 0, 0.6);
+}
+
+/* TÍTULO */
+.card h1 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #ff0000;
+  text-shadow: 0 0 10px #ff0000;
+}
+
+/* TEXTO */
+.card p {
+  font-size: 15px;
+  color: #af1313;
+  margin-bottom: 25px;
+}
+
+/* BOTÃO */
+.card button {
+  background: transparent;
+  color: #ff0000;
+  border: 2px solid #ff0000;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: 2px;
+
+  box-shadow: 0 0 10px #ff0000;
+  transition: all 0.3s;
+}
+
+/* HOVER DO BOTÃO */
+.card button:hover {
+  background: #ff0000;
+  color: black;
+  box-shadow:
+    0 0 20px #ff0000,
+    0 0 40px #ff0000;
+}
+/* GLITCH TEXT */
+.glitch {
+  position: relative;
+  font-size: 32px;
+  font-weight: bold;
+  color: #ff0000;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px #ff0000;
+}
+
+/* CAMADAS DO GLITCH */
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* CAMADA ROSA */
+.glitch::before {
+  color: #ff0000;
+  animation: glitchTop 2s infinite linear alternate-reverse;
+}
+
+/* CAMADA AZUL */
+.glitch::after {
+  color: #ff0000;
+  animation: glitchBottom 1.5s infinite linear alternate-reverse;
+}
+
+/* ANIMAÇÕES */
+@keyframes glitchTop {
+  0% {
+    clip-path: inset(0 0 80% 0);
+    transform: translate(-2px, -2px);
+  }
+  20% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(2px, 2px);
+  }
+  40% {
+    clip-path: inset(30% 0 30% 0);
+    transform: translate(-2px, 1px);
+  }
+  60% {
+    clip-path: inset(50% 0 10% 0);
+    transform: translate(1px, -1px);
+  }
+  80% {
+    clip-path: inset(20% 0 40% 0);
+    transform: translate(-1px, 2px);
+  }
+  100% {
+    clip-path: inset(0 0 80% 0);
+    transform: translate(0);
+  }
+}
+
+@keyframes glitchBottom {
+  0% {
+    clip-path: inset(80% 0 0 0);
+    transform: translate(2px, 2px);
+  }
+  20% {
+    clip-path: inset(60% 0 10% 0);
+    transform: translate(-2px, -2px);
+  }
+  40% {
+    clip-path: inset(40% 0 30% 0);
+    transform: translate(2px, 1px);
+  }
+  60% {
+    clip-path: inset(10% 0 50% 0);
+    transform: translate(-1px, 2px);
+  }
+  80% {
+    clip-path: inset(40% 0 20% 0);
+    transform: translate(1px, -1px);
+  }
+  100% {
+    clip-path: inset(80% 0 0 0);
+    transform: translate(0);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Courier New', monospace;
+}
+
+body.entrada {
+  background: rgb(0, 0, 0);
+  color: #ff0000;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  text-align: center;
+}
+
+button {
+  margin-top: 30px;
+  padding: 15px 40px;
+  font-size: 18px;
+  background: transparent;
+  color: #ff0000;
+  border: 2px solid #ff0000;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ff0000;
+  color: rgb(78, 0, 0);
+  box-shadow: 0 0 20px #ff0000;
+}
+
+/* GLITCH SIMPLES */
+.glitch {
+  position: relative;
+  font-size: 60px;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+}
+
+.glitch::before {
+  color: rgb(172, 14, 14);
+  animation: glitch 1s infinite;
+}
+
+.glitch::after {
+  color: rgb(134, 0, 0);
+  animation: glitch 1.5s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  100% { transform: translate(0); }
+}
+
+body.sistema {
+  background: radial-gradient(circle at top, #270000, #000);
+  color: #ff0000;
+  min-height: 100vh;
+  padding: 40px;
+
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.topo {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+#calculadora{
+  display: none;
+}
+
+.card-util {
+  border: 2px solid #ff0000;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 15px #ff0000;
+  transition: 0.3s;
+  font-size: 18px;
+}
+
+.card-util:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 0 30px #ff0000;
+}
+
+.painel {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.lado-esquerdo {
+  border-left: 3px solid #ff0000;
+  padding-left: 25px;
+}
+
+.lado-esquerdo p {
+  margin-top: 15px;
+  opacity: 0.7;
+}
+
+/* ESTILO DO FORMULÁRIO DE TAREFAS */
+.tarefa-form {
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #ff0000;
+  border-radius: 16px;
+  box-shadow: 0 0 30px #ff0000, 0 0 60px #000;
+  padding: 30px;
+  margin-top: 30px;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tarefa-form h2 {
+  color: #ff0000;
+  text-shadow: 0 0 10px #ff0000;
+  margin-bottom: 25px;
+  font-size: 24px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.tarefa-form input,
+.tarefa-form textarea,
+.tarefa-form select {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #ff0000;
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  color: #ff0000;
+  font-size: 14px;
+  font-family: 'Courier New', monospace;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+  transition: all 0.3s;
+}
+
+.tarefa-form input:focus,
+.tarefa-form textarea:focus,
+.tarefa-form select:focus {
+  outline: none;
+  border-color: #ff0000;
+  box-shadow: 0 0 20px #ff0000, 0 0 40px rgba(255, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.tarefa-form input::placeholder,
+.tarefa-form textarea::placeholder {
+  color: rgba(255, 0, 0, 0.5);
+  font-style: italic;
+}
+
+.tarefa-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.tarefa-form select {
+  cursor: pointer;
+}
+
+.tarefa-form select option {
+  background: #000;
+  color: #ff0000;
+  padding: 10px;
+}
+
+.tarefa-form button {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+/* CONTAINER DE ESTUDOS */
+.estudos-container {
+  background: rgba(0, 0, 0, 0.92);
+  border: 2px solid #ff0000;
+  border-radius: 18px;
+  box-shadow: 0 0 30px #ff0000, 0 0 60px #000;
+  padding: 40px 30px;
+  max-width: 700px;
+  margin: 40px auto;
+  min-height: 100vh;
+}
+
+/* LISTA DE TAREFAS */
+.tarefas-lista {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* CARD DE TAREFA */
+.tarefa-card {
+  background: rgba(20, 0, 0, 0.85);
+  border: 2px solid #ff0000;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #ff0000;
+  padding: 22px 18px;
+  color: #ff0000;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tarefa-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 30px #ff0000, 0 0 60px #ff0000;
+}
+
+/* TOPO DO CARD */
+.tarefa-topo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.categoria {
+  color: #ff0000;
+  text-shadow: 0 0 6px #ff0000;
+  font-weight: bold;
+}
+
+.prioridade {
+  color: #ff0000;
+  border: 1px solid #ff0000;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 12px;
+  background: rgba(0,0,0,0.5);
+  box-shadow: 0 0 8px #ff0000;
+}
+
+/* DESTAQUE PARA PRIORIDADES */
+.prioridade-alta {
+  box-shadow: 0 0 25px #ff0000, 0 0 50px #ff0000;
+  border-color: #ff0000;
+}
+
+.prioridade-média {
+  box-shadow: 0 0 15px #ff6600;
+  border-color: #ff6600;
+}
+
+.prioridade-baixa {
+  box-shadow: 0 0 10px #ffcc00;
+  border-color: #ffcc00;
+}
+
+.tarefa-card h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #ff0000;
+  text-shadow: 0 0 8px #ff0000;
+}
+
+.tarefa-card p {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+/* INFORMAÇÕES DA TAREFA */
+.tarefa-info {
+  margin: 12px 0 10px 0;
+  font-size: 13px;
+  opacity: 0.7;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* STATUS */
+.status-pendente {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+.status-concluída {
+  color: #00ff00;
+  text-shadow: 0 0 8px #00ff00;
+  font-weight: bold;
+}
+
+.status-atrasada {
+  color: #ffcc00;
+  text-shadow: 0 0 8px #ffcc00;
+  font-weight: bold;
+}
+
+/* AÇÕES DA TAREFA */
+.tarefa-acoes {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* BOTÕES CYBERPUNK */
+.btn-cyber {
+  background: transparent;
+  color: #ff0000;
+  border: 2px solid #ff0000;
+  padding: 8px 18px;
+  border-radius: 7px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff0000;
+  transition: all 0.3s;
+  letter-spacing: 1.5px;
+  font-family: 'Courier New', monospace;
+}
+
+.btn-cyber:hover {
+  background: #ff0000;
+  color: #1a0000;
+  box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
+  transform: translateY(-2px);
+}
+

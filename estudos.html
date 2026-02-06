@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudos - Cyberpunk Tasks</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="estudos-container">
+    <h1 class="glitch" data-text="Estudos">Estudos</h1>
+    <button class="btn-cyber" onclick="abrirFormularioTarefa()">+ Nova Tarefa</button>
+    <div class="tarefas-lista" id="tarefasLista">
+      <!-- Cards de tarefas serão renderizados aqui -->
+    </div>
+    <!-- Formulário de nova tarefa -->
+    <div id="formTarefa" style="display:none;" class="tarefa-form">
+      <h2>Criar Nova Tarefa</h2>
+      <input type="text" id="tituloTarefa" placeholder="Título" required>
+      <textarea id="descricaoTarefa" placeholder="Descrição"></textarea>
+      <input type="date" id="prazoTarefa">
+      <select id="categoriaTarefa">
+        <option value="Estudo">Estudo</option>
+        <option value="Trabalho">Trabalho</option>
+        <option value="Código">Código</option>
+        <option value="Pessoal">Pessoal</option>
+      </select>
+      <select id="prioridadeTarefa">
+        <option value="alta">Alta</option>
+        <option value="média">Média</option>
+        <option value="baixa">Baixa</option>
+      </select>
+      <button class="btn-cyber" onclick="salvarTarefa()">Salvar</button>
+      <button class="btn-cyber" onclick="fecharFormularioTarefa()">Cancelar</button>
+    </div>
+  </div>
+  <script src="tasks.js"></script>
+</body>
+</html>
