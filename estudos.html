@@ -5,10 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estudos - Cyberpunk Tasks</title>
   <link rel="stylesheet" href="style.css">
+  <script src="theme-loader.js"></script>
 </head>
 <body>
   <div class="estudos-container">
-    <h1 class="glitch" data-text="Estudos">Estudos</h1>
+    <h1 class="glitch" data-text="CYBER ESTUDOS">CYBER ESTUDOS</h1>
+    
+    <!-- Abas de Navegação -->
+    <div class="tabs-container">
+      <button class="tab-btn active" onclick="mudarAba('tarefas')">✓ Tarefas</button>
+      <button class="tab-btn" onclick="mudarAba('gerador')">📝 Gerador de Trabalho</button>
+      <button class="tab-btn" onclick="mudarAba('resumo')">📄 Gerador de Resumo</button>
+    </div>
+
+    <!-- ABA 1: TAREFAS -->
+    <div id="abaTarefas" class="aba-content active">
     <button class="btn-cyber" onclick="abrirFormularioTarefa()">+ Nova Tarefa</button>
     
     <!-- Filtros de Prioridade -->
@@ -60,6 +71,113 @@
         <button class="btn-cyber" onclick="fecharFormularioTarefa()">Cancelar</button>
       </div>
     </div>
+    </div>
+
+    <!-- ABA 2: GERADOR DE ESTRUTURA DE TRABALHO -->
+    <div id="abaGerador" class="aba-content">
+      <h2 class="subtitulo">📝 Gerador de Estrutura de Trabalho Acadêmico</h2>
+      <p class="descricao-funcionalidade">Preencha os dados abaixo e gere automaticamente a estrutura do seu trabalho!</p>
+      
+      <div class="gerador-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Título do Trabalho *</label>
+            <input type="text" id="trabalhoTitulo" placeholder="Ex: Inteligência Artificial na Medicina">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Seu Nome *</label>
+            <input type="text" id="trabalhoNome" placeholder="Seu nome completo">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Curso *</label>
+            <input type="text" id="trabalhoCurso" placeholder="Ex: Ciência da Computação">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Disciplina *</label>
+            <input type="text" id="trabalhoDisciplina" placeholder="Ex: Sistemas Inteligentes">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Professor(a)</label>
+            <input type="text" id="trabalhoProfessor" placeholder="Nome do professor">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Instituição *</label>
+            <input type="text" id="trabalhoInstituicao" placeholder="Ex: Universidade Federal">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Data</label>
+            <input type="date" id="trabalhoData">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Número de Capítulos (Desenvolvimento)</label>
+          <input type="number" id="trabalhoCapitulos" min="1" max="10" value="3" placeholder="3">
+        </div>
+
+        <button class="btn-cyber btn-gerar" onclick="gerarTrabalho()">🚀 Gerar Estrutura do Trabalho</button>
+      </div>
+
+      <!-- Resultado do Trabalho Gerado -->
+      <div id="trabalhoGerado" class="resultado-container" style="display: none;">
+        <div class="resultado-header">
+          <h3>✅ Trabalho Gerado com Sucesso!</h3>
+          <div class="resultado-acoes">
+            <button class="btn-cyber-small" onclick="copiarTrabalho()">📋 Copiar Tudo</button>
+            <button class="btn-cyber-small" onclick="baixarTrabalho()">💾 Baixar TXT</button>
+            <button class="btn-cyber-small" onclick="limparTrabalho()">🗑️ Limpar</button>
+          </div>
+        </div>
+        <div id="trabalhoConteudo" class="trabalho-conteudo"></div>
+      </div>
+    </div>
+
+    <!-- ABA 3: GERADOR DE RESUMO -->
+    <div id="abaResumo" class="aba-content">
+      <h2 class="subtitulo">📄 Gerador de Resumo Automático</h2>
+      <p class="descricao-funcionalidade">Cole um texto longo e obtenha um resumo conciso das ideias principais!</p>
+      
+      <div class="resumo-form">
+        <label class="form-label">Texto Original *</label>
+        <textarea id="textoOriginal" placeholder="Cole aqui o texto que deseja resumir..." rows="10"></textarea>
+        <small class="form-hint">💡 Quanto maior o texto, melhor será o resumo!</small>
+
+        <label class="form-label">Tamanho do Resumo</label>
+        <select id="tamanhoResumo" class="select-cyber">
+          <option value="curto">Curto (10% do original)</option>
+          <option value="medio" selected>Médio (25% do original)</option>
+          <option value="longo">Longo (40% do original)</option>
+        </select>
+
+        <button class="btn-cyber btn-gerar" onclick="gerarResumo()">🤖 Gerar Resumo</button>
+      </div>
+
+      <!-- Resultado do Resumo -->
+      <div id="resumoGerado" class="resultado-container" style="display: none;">
+        <div class="resultado-header">
+          <h3>✅ Resumo Gerado!</h3>
+          <div class="resultado-acoes">
+            <button class="btn-cyber-small" onclick="copiarResumo()">📋 Copiar Resumo</button>
+            <button class="btn-cyber-small" onclick="baixarResumo()">💾 Baixar TXT</button>
+            <button class="btn-cyber-small" onclick="limparResumo()">🗑️ Limpar</button>
+          </div>
+        </div>
+        <div class="resumo-info">
+          <span id="infoOriginal"></span> | <span id="infoResumo"></span>
+        </div>
+        <div id="resumoConteudo" class="resumo-conteudo"></div>
+      </div>
+    </div>
+
   </div>
   <script src="tasks.js"></script>
 </body>

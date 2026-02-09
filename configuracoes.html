@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurações - Cyber Mobb</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="theme-loader.js"></script>
+</head>
+<body>
+  <div class="config-container">
+    <div class="config-header">
+      <h1 class="glitch" data-text="CONFIGURAÇÕES">CONFIGURAÇÕES</h1>
+      <button class="btn-voltar" onclick="window.location.href='sistema.html'">← Voltar</button>
+    </div>
+
+    <div class="config-content">
+      
+      <!-- SEÇÃO: APARÊNCIA -->
+      <div class="config-section">
+        <h2 class="config-title">🎨 Aparência</h2>
+        
+        <div class="config-item">
+          <label class="config-label">Cor do Tema (Acento Neon):</label>
+          <div class="color-grid">
+            <button class="color-btn" data-color="#ff0000" style="--color: #ff0000" onclick="trocarCor('#ff0000')">
+              <span class="color-name">Vermelho</span>
+            </button>
+            <button class="color-btn" data-color="#00dfff" style="--color: #00dfff" onclick="trocarCor('#00dfff')">
+              <span class="color-name">Azul</span>
+            </button>
+            <button class="color-btn" data-color="#ff00ff" style="--color: #ff00ff" onclick="trocarCor('#ff00ff')">
+              <span class="color-name">Magenta</span>
+            </button>
+            <button class="color-btn" data-color="#00ff88" style="--color: #00ff88" onclick="trocarCor('#00ff88')">
+              <span class="color-name">Verde</span>
+            </button>
+            <button class="color-btn" data-color="#ffd166" style="--color: #ffd166" onclick="trocarCor('#ffd166')">
+              <span class="color-name">Dourado</span>
+            </button>
+            <button class="color-btn" data-color="#8a2be2" style="--color: #8a2be2" onclick="trocarCor('#8a2be2')">
+              <span class="color-name">Roxo</span>
+            </button>
+          </div>
+          <small class="config-hint">💡 A cor selecionada será aplicada em todo o sistema</small>
+        </div>
+
+        <div class="config-item">
+          <label class="config-label">Modo de Fundo:</label>
+          <select id="modoFundo" onchange="trocarFundo(this.value)" class="select-cyber">
+            <option value="gradient">Gradiente Escuro (Padrão)</option>
+            <option value="solid">Sólido Escuro</option>
+            <option value="animated">Animado (Stars)</option>
+          </select>
+        </div>
+
+        <div class="config-item">
+          <label class="config-label">Tamanho da Fonte:</label>
+          <div class="slider-container">
+            <input type="range" id="tamanhoFonte" min="12" max="18" value="14" oninput="trocarFonte(this.value)">
+            <span id="fonteValor">14px</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEÇÃO: ASSISTENTE IA -->
+      <div class="config-section">
+        <h2 class="config-title">🤖 Assistente IA</h2>
+        
+        <div class="config-item">
+          <label class="config-label">Modo de Operação:</label>
+          <select id="modoIA" onchange="salvarConfigs()" class="select-cyber">
+            <option value="local">Local (Respostas pré-programadas)</option>
+            <option value="api">API Externa (OpenAI, etc.)</option>
+          </select>
+          <small class="config-hint">⚠️ Modo API requer chave de acesso</small>
+        </div>
+
+        <div class="config-item" id="apiKeySection" style="display: none;">
+          <label class="config-label">Chave da API:</label>
+          <input type="password" id="apiKey" placeholder="sk-..." oninput="salvarConfigs()" class="input-cyber">
+          <button class="btn-cyber-small" onclick="toggleApiKey()">👁️ Mostrar/Ocultar</button>
+        </div>
+
+        <div class="config-item">
+          <label class="config-label">
+            <input type="checkbox" id="historicoPersistente" onchange="salvarConfigs()"> 
+            Manter histórico do chat entre sessões
+          </label>
+        </div>
+      </div>
+
+      <!-- SEÇÃO: COMPORTAMENTO -->
+      <div class="config-section">
+        <h2 class="config-title">⚙️ Comportamento</h2>
+        
+        <div class="config-item">
+          <label class="config-label">
+            <input type="checkbox" id="autosave" onchange="salvarConfigs()" checked> 
+            Salvar automaticamente tarefas e arquivos
+          </label>
+        </div>
+
+        <div class="config-item">
+          <label class="config-label">
+            <input type="checkbox" id="notificacoes" onchange="salvarConfigs()"> 
+            Ativar notificações de lembretes
+          </label>
+        </div>
+
+        <div class="config-item">
+          <label class="config-label">
+            <input type="checkbox" id="sons" onchange="salvarConfigs()"> 
+            Reproduzir sons ao concluir ações
+          </label>
+        </div>
+
+        <div class="config-item">
+          <label class="config-label">
+            <input type="checkbox" id="enterEnvia" onchange="salvarConfigs()" checked> 
+            Enter envia mensagem no chat (Shift+Enter para nova linha)
+          </label>
+        </div>
+      </div>
+
+      <!-- SEÇÃO: DADOS -->
+      <div class="config-section">
+        <h2 class="config-title">💾 Gerenciar Dados</h2>
+        
+        <div class="config-item">
+          <button class="btn-cyber" onclick="exportarDados()">📤 Exportar Dados</button>
+          <small class="config-hint">Baixa todas as suas configurações, tarefas e arquivos</small>
+        </div>
+
+        <div class="config-item">
+          <button class="btn-cyber" onclick="importarDados()">📥 Importar Dados</button>
+          <input type="file" id="importFile" accept=".json" style="display: none;" onchange="processarImport(event)">
+          <small class="config-hint">Restaura dados de um backup anterior</small>
+        </div>
+
+        <div class="config-item">
+          <button class="btn-cyber btn-danger" onclick="limparTodosDados()">🗑️ Limpar Todos os Dados</button>
+          <small class="config-hint">⚠️ Esta ação é irreversível!</small>
+        </div>
+      </div>
+
+      <!-- SEÇÃO: SOBRE -->
+      <div class="config-section">
+        <h2 class="config-title">ℹ️ Sobre</h2>
+        <div class="sobre-info">
+          <p><strong>CYBER MOBB SYSTEM</strong></p>
+          <p>Versão: 2.0</p>
+          <p>Módulos: Calculadora, Estudos, Arquivos, Assistente IA, Tarefas, Configurações</p>
+          <p class="config-hint">Sistema desenvolvido para produtividade acadêmica e profissional 🚀</p>
+        </div>
+      </div>
+
+      <!-- Prévia do Tema -->
+      <div class="preview-section">
+        <h3 class="preview-title">Prévia do Tema</h3>
+        <div class="preview-card">
+          <div class="preview-text">Texto com acento neon</div>
+          <button class="btn-cyber preview-btn">Botão Cyberpunk</button>
+          <div class="preview-border">Borda neon</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="configuracoes.js"></script>
+</body>
+</html>

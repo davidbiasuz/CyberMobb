@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assistente IA - Cyber Mobb</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="theme-loader.js"></script>
+</head>
+<body>
+  <div class="assistente-container">
+    <div class="assistente-header">
+      <h1 class="glitch" data-text="CYBER IA ASSISTANT">CYBER IA ASSISTANT</h1>
+      <button class="btn-voltar" onclick="window.location.href='sistema.html'">← Voltar</button>
+    </div>
+
+    <div class="assistente-status">
+      <span class="status-indicator"></span>
+      <span class="status-text">Status: ONLINE</span>
+    </div>
+
+    <!-- Abas de Funções -->
+    <div class="ia-tabs">
+      <button class="ia-tab active" onclick="mudarFuncaoIA('chat')">💬 Chat</button>
+      <button class="ia-tab" onclick="mudarFuncaoIA('explicar')">🎯 Explicar</button>
+      <button class="ia-tab" onclick="mudarFuncaoIA('corrigir')">✏️ Corrigir Texto</button>
+      <button class="ia-tab" onclick="mudarFuncaoIA('perguntas')">❓ Gerar Perguntas</button>
+      <button class="ia-tab" onclick="mudarFuncaoIA('codigo')">💻 Ajuda Código</button>
+    </div>
+
+    <!-- FUNÇÃO 1: CHAT INTERATIVO -->
+    <div id="funcaoChat" class="ia-funcao active">
+      <div class="chat-container">
+        <div id="chatHistorico" class="chat-historico">
+          <div class="mensagem-ia">
+            <span class="ia-icon">🤖</span>
+            <div class="mensagem-conteudo">
+              <strong>CYBER IA:</strong> Olá! Eu sou seu assistente virtual. Como posso ajudar você hoje?
+            </div>
+          </div>
+        </div>
+        
+        <div class="chat-sugestoes">
+          <button class="btn-sugestao" onclick="enviarSugestao('Me explique sobre inteligência artificial')">🎯 Explique IA</button>
+          <button class="btn-sugestao" onclick="enviarSugestao('Como estudar melhor?')">📚 Dicas de estudo</button>
+          <button class="btn-sugestao" onclick="enviarSugestao('O que é JavaScript?')">💻 Sobre JS</button>
+          <button class="btn-sugestao" onclick="enviarSugestao('Ajuda com redação')">✍️ Redação</button>
+        </div>
+
+        <div class="chat-input-container">
+          <textarea id="chatInput" placeholder="Digite sua mensagem..." rows="2"></textarea>
+          <button class="btn-enviar" onclick="enviarMensagem()">
+            <span>Enviar</span>
+            <span class="icon-enviar">►</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FUNÇÃO 2: EXPLICADOR -->
+    <div id="funcaoExplicar" class="ia-funcao">
+      <div class="funcao-container">
+        <h2>🎯 Explicador Simplificado</h2>
+        <p class="funcao-desc">Cole um texto complexo e receba uma explicação simples!</p>
+        
+        <label class="form-label">Texto para Explicar:</label>
+        <textarea id="textoExplicar" placeholder="Cole aqui o texto que deseja entender melhor..." rows="8"></textarea>
+        
+        <label class="form-label">Nível de Explicação:</label>
+        <select id="nivelExplicacao" class="select-cyber">
+          <option value="basico">Básico (Para iniciantes)</option>
+          <option value="intermediario">Intermediário</option>
+          <option value="avancado">Avançado</option>
+        </select>
+
+        <button class="btn-cyber btn-processar" onclick="explicarTexto()">🚀 Explicar</button>
+
+        <div id="resultadoExplicar" class="resultado-ia" style="display: none;"></div>
+      </div>
+    </div>
+
+    <!-- FUNÇÃO 3: CORRETOR DE TEXTO -->
+    <div id="funcaoCorrigir" class="ia-funcao">
+      <div class="funcao-container">
+        <h2>✏️ Corretor e Melhorador de Textos</h2>
+        <p class="funcao-desc">Corrija erros e melhore seu texto!</p>
+        
+        <label class="form-label">Texto Original:</label>
+        <textarea id="textoCorrigir" placeholder="Cole o texto que deseja corrigir..." rows="8"></textarea>
+        
+        <label class="form-label">Tipo de Correção:</label>
+        <select id="tipoCorrecao" class="select-cyber">
+          <option value="gramatica">Gramática e Ortografia</option>
+          <option value="formal">Tornar mais Formal/Acadêmico</option>
+          <option value="simplificar">Simplificar Linguagem</option>
+        </select>
+
+        <button class="btn-cyber btn-processar" onclick="corrigirTexto()">🚀 Corrigir</button>
+
+        <div id="resultadoCorrigir" class="resultado-ia" style="display: none;"></div>
+      </div>
+    </div>
+
+    <!-- FUNÇÃO 4: GERADOR DE PERGUNTAS -->
+    <div id="funcaoPerguntas" class="ia-funcao">
+      <div class="funcao-container">
+        <h2>❓ Gerador de Perguntas de Estudo</h2>
+        <p class="funcao-desc">Gere perguntas para estudar sobre qualquer tema!</p>
+        
+        <label class="form-label">Tema ou Texto:</label>
+        <textarea id="temaPerguntas" placeholder="Digite o tema ou cole o texto sobre o qual deseja gerar perguntas..." rows="6"></textarea>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Quantidade de Perguntas:</label>
+            <input type="number" id="quantidadePerguntas" min="3" max="15" value="5">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Dificuldade:</label>
+            <select id="dificuldadePerguntas" class="select-cyber">
+              <option value="facil">Fácil</option>
+              <option value="media" selected>Média</option>
+              <option value="dificil">Difícil</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn-cyber btn-processar" onclick="gerarPerguntas()">🚀 Gerar Perguntas</button>
+
+        <div id="resultadoPerguntas" class="resultado-ia" style="display: none;"></div>
+      </div>
+    </div>
+
+    <!-- FUNÇÃO 5: AJUDA COM CÓDIGO -->
+    <div id="funcaoCodigo" class="ia-funcao">
+      <div class="funcao-container">
+        <h2>💻 Assistente de Código</h2>
+        <p class="funcao-desc">Entenda, corrija ou melhore seu código!</p>
+        
+        <label class="form-label">Seu Código:</label>
+        <textarea id="codigoInput" placeholder="Cole seu código aqui..." rows="10" class="codigo-textarea"></textarea>
+        
+        <label class="form-label">O que deseja fazer?</label>
+        <select id="acaoCodigo" class="select-cyber">
+          <option value="explicar">Explicar o que o código faz</option>
+          <option value="melhorar">Sugerir melhorias</option>
+          <option value="bugs">Encontrar possíveis bugs</option>
+          <option value="comentar">Adicionar comentários</option>
+        </select>
+
+        <button class="btn-cyber btn-processar" onclick="analisarCodigo()">🚀 Analisar Código</button>
+
+        <div id="resultadoCodigo" class="resultado-ia" style="display: none;"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="assistente.js"></script>
+</body>
+</html>
