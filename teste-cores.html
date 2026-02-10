@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste de Cores</title>
+  <style>
+    body {
+      background: #000;
+      color: var(--cor-principal);
+      font-family: monospace;
+      padding: 50px;
+    }
+    .teste {
+      border: 2px solid var(--cor-principal);
+      padding: 20px;
+      margin: 20px 0;
+      background: var(--cor-01);
+    }
+    .teste-shadow {
+      box-shadow: 0 0 20px var(--cor-03);
+      padding: 20px;
+      margin: 20px 0;
+    }
+  </style>
+  <script src="theme-loader.js"></script>
+</head>
+<body>
+  <h1>Teste de Sistema de Cores</h1>
+  
+  <div class="teste">
+    <p>Este elemento usa var(--cor-principal) na borda</p>
+    <p>E var(--cor-01) no fundo (10% opacidade)</p>
+  </div>
+
+  <div class="teste-shadow">
+    <p>Este elemento usa var(--cor-03) na sombra (30% opacidade)</p>
+  </div>
+
+  <h2>Cor atual no localStorage:</h2>
+  <p id="cor-atual"></p>
+
+  <h2>Variáveis CSS computadas:</h2>
+  <div id="variaveis"></div>
+
+  <h2>Trocar Cor:</h2>
+  <button onclick="trocarCor('#ff0000')" style="background: #ff0000; padding: 10px; margin: 5px;">Vermelho</button>
+  <button onclick="trocarCor('#00dfff')" style="background: #00dfff; padding: 10px; margin: 5px;">Azul</button>
+  <button onclick="trocarCor('#ff00ff')" style="background: #ff00ff; padding: 10px; margin: 5px;">Magenta</button>
+  <button onclick="trocarCor('#00ff88')" style="background: #00ff88; padding: 10px; margin: 5px;">Verde</button>
+
+  <script>
+    // Mostrar cor atual
+    document.getElementById('cor-atual').textContent = localStorage.getItem('corTema') || 'Nenhuma';
+
+    // Mostrar variáveis CSS
+    const root = document.documentElement;
+    const variaveis = [
+      '--cor-principal',
+      '--cor-principal-rgb',
+      '--cor-005',
+      '--cor-01',
+      '--cor-02',
+      '--cor-03'
+    ];
+    
+    let html = '<ul>';
+    variaveis.forEach(v => {
+      const valor = getComputedStyle(root).getPropertyValue(v);
+      html += `<li><strong>${v}</strong>: ${valor || 'NÃO DEFINIDA'}</li>`;
+    });
+    html += '</ul>';
+    document.getElementById('variaveis').innerHTML = html;
+
+    // Função de trocar cor
+    function hexParaRgb(hex) {
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+      return { r, g, b };
+    }
+
+    function aplicarVariacoesCor(cor) {
+      const rgb = hexParaRgb(cor);
+      const root = document.documentElement;
+      
+      root.style.setProperty('--cor-principal', cor);
+      root.style.setProperty('--cor-principal-rgb', `${rgb.r}, ${rgb.g}, ${rgb.b}`);
+      root.style.setProperty('--cor-005', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.05)`);
+      root.style.setProperty('--cor-01', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1)`);
+      root.style.setProperty('--cor-02', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`);
+      root.style.setProperty('--cor-03', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.3)`);
+      root.style.setProperty('--cor-04', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4)`);
+      root.style.setProperty('--cor-05', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`);
+      root.style.setProperty('--cor-06', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.6)`);
+      root.style.setProperty('--cor-07', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.7)`);
+      root.style.setProperty('--cor-08', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8)`);
+      
+      console.log('Cor aplicada:', cor, 'RGB:', rgb);
+    }
+
+    function trocarCor(cor) {
+      localStorage.setItem('corTema', cor);
+      aplicarVariacoesCor(cor);
+      alert('Cor trocada para: ' + cor + '\n\nRecarregue a página para ver as variáveis atualizadas.');
+      location.reload();
+    }
+  </script>
+</body>
+</html>

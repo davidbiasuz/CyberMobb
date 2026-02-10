@@ -7,12 +7,50 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ========== GERENCIAMENTO DE CORES ==========
+function hexParaRgb(hex) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return { r, g, b };
+}
+
+function escurecerCor(hex, fator = 0.3) {
+  const rgb = hexParaRgb(hex);
+  const r = Math.round(rgb.r * fator);
+  const g = Math.round(rgb.g * fator);
+  const b = Math.round(rgb.b * fator);
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+}
+
+function aplicarVariacoesCor(cor) {
+  const rgb = hexParaRgb(cor);
+  const root = document.documentElement;
+  
+  // Define a cor principal
+  root.style.setProperty('--cor-principal', cor);
+  
+  // Define cor escura para gradientes
+  root.style.setProperty('--cor-fundo-escuro', escurecerCor(cor, 0.3));
+  
+  // Define variações com diferentes opacidades
+  root.style.setProperty('--cor-principal-rgb', `${rgb.r}, ${rgb.g}, ${rgb.b}`);
+  root.style.setProperty('--cor-005', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.05)`);
+  root.style.setProperty('--cor-01', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1)`);
+  root.style.setProperty('--cor-02', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`);
+  root.style.setProperty('--cor-03', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.3)`);
+  root.style.setProperty('--cor-04', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4)`);
+  root.style.setProperty('--cor-05', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`);
+  root.style.setProperty('--cor-06', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.6)`);
+  root.style.setProperty('--cor-07', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.7)`);
+  root.style.setProperty('--cor-08', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8)`);
+}
+
 function trocarCor(cor) {
   // Salva a cor escolhida
   localStorage.setItem('corTema', cor);
   
-  // Aplica imediatamente
-  document.documentElement.style.setProperty('--cor-principal', cor);
+  // Aplica imediatamente com todas as variações
+  aplicarVariacoesCor(cor);
   
   // Feedback visual
   document.querySelectorAll('.color-btn').forEach(btn => {
@@ -134,7 +172,7 @@ function carregarConfigs() {
 // ========== APLICAR TEMA ==========
 function aplicarTema() {
   const corSalva = localStorage.getItem('corTema') || '#ff0000';
-  document.documentElement.style.setProperty('--cor-principal', corSalva);
+  aplicarVariacoesCor(corSalva);
   
   // Marcar cor ativa
   const btnAtivo = document.querySelector(`[data-color="${corSalva}"]`);
